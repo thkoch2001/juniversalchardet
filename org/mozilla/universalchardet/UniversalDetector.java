@@ -83,6 +83,10 @@ public class UniversalDetector
     ////////////////////////////////////////////////////////////////
     // methods
     ////////////////////////////////////////////////////////////////
+    /**
+     * @param listener a listener object that is notified of
+     *         the detected encocoding. Can be null.
+     */
     public UniversalDetector(CharsetListener listener)
     {
         this.listener = listener;
@@ -100,6 +104,10 @@ public class UniversalDetector
         return this.done;
     }
     
+    /**
+     * @return The detected encoding is returned. If the detector couldn't
+     *          determine what encoding is used, null is returned.
+     */
     public String getDetectedCharset()
     {
         return this.detectedCharset;
