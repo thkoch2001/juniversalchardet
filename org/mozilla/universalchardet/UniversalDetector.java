@@ -106,7 +106,7 @@ public class UniversalDetector
     
     /**
      * @return The detected encoding is returned. If the detector couldn't
-     *          determine what encoding is used, null is returned.
+     *          determine what encoding was used, null is returned.
      */
     public String getDetectedCharset()
     {
