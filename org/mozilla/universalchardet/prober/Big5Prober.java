@@ -47,12 +47,12 @@ public class Big5Prober extends CharsetProber
     ////////////////////////////////////////////////////////////////
     // fields
     ////////////////////////////////////////////////////////////////
-    private CodingStateMachine             codingSM;
-    private ProbingState                 state;
+    private CodingStateMachine          codingSM;
+    private ProbingState                state;
     
-    private Big5DistributionAnalysis     distributionAnalyzer;
+    private Big5DistributionAnalysis    distributionAnalyzer;
     
-    private byte[]                        lastChar;
+    private byte[]                      lastChar;
 
     private static final SMModel smModel = new Big5SMModel();
 
@@ -133,6 +133,7 @@ public class Big5Prober extends CharsetProber
         this.codingSM.reset();
         this.state = ProbingState.DETECTING;
         this.distributionAnalyzer.reset();
+        java.util.Arrays.fill(this.lastChar, (byte)0);
     }
 
     @Override

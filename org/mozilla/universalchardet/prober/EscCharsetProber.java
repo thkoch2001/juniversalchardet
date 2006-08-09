@@ -50,10 +50,10 @@ public class EscCharsetProber extends CharsetProber
     ////////////////////////////////////////////////////////////////
     // fields
     ////////////////////////////////////////////////////////////////
-    private CodingStateMachine[]     codingSM;
-    private int                        activeSM;
+    private CodingStateMachine[]    codingSM;
+    private int                     activeSM;
     private ProbingState            state;
-    private String                    detectedCharset;
+    private String                  detectedCharset;
     
     private static final HZSMModel hzsModel = new HZSMModel();
     private static final ISO2022CNSMModel iso2022cnModel = new ISO2022CNSMModel();

@@ -45,32 +45,32 @@ public class SingleByteCharsetProber extends CharsetProber
     ////////////////////////////////////////////////////////////////
     // constants
     ////////////////////////////////////////////////////////////////
-    public static final int        SAMPLE_SIZE = 64;
-    public static final int        SB_ENOUGH_REL_THRESHOLD = 1024;
-    public static final float    POSITIVE_SHORTCUT_THRESHOLD = 0.95f;
-    public static final float    NEGATIVE_SHORTCUT_THRESHOLD = 0.05f;
-    public static final int        SYMBOL_CAT_ORDER = 250;
-    public static final int        NUMBER_OF_SEQ_CAT = 4;
-    public static final int        POSITIVE_CAT = NUMBER_OF_SEQ_CAT-1;
-    public static final int        NEGATIVE_CAT = 0;
+    public static final int     SAMPLE_SIZE = 64;
+    public static final int     SB_ENOUGH_REL_THRESHOLD = 1024;
+    public static final float   POSITIVE_SHORTCUT_THRESHOLD = 0.95f;
+    public static final float   NEGATIVE_SHORTCUT_THRESHOLD = 0.05f;
+    public static final int     SYMBOL_CAT_ORDER = 250;
+    public static final int     NUMBER_OF_SEQ_CAT = 4;
+    public static final int     POSITIVE_CAT = NUMBER_OF_SEQ_CAT-1;
+    public static final int     NEGATIVE_CAT = 0;
     
 
     ////////////////////////////////////////////////////////////////
     // fields
     ////////////////////////////////////////////////////////////////
     private ProbingState    state;
-    private SequenceModel    model;
-    private boolean            reversed;
+    private SequenceModel   model;
+    private boolean         reversed;
     
-    private short            lastOrder;
+    private short           lastOrder;
 
-    private int                totalSeqs;
-    private int[]            seqCounters;
+    private int             totalSeqs;
+    private int[]           seqCounters;
     
-    private int                totalChar;
-    private int                freqChar;
+    private int             totalChar;
+    private int             freqChar;
     
-    private CharsetProber    nameProber;
+    private CharsetProber   nameProber;
     
     
     ////////////////////////////////////////////////////////////////

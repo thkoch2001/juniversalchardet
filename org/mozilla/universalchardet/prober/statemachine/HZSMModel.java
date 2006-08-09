@@ -37,12 +37,18 @@
 
 package org.mozilla.universalchardet.prober.statemachine;
 
+import static org.mozilla.universalchardet.prober.statemachine.PkgInt.INDEX_SHIFT_4BITS;
+import static org.mozilla.universalchardet.prober.statemachine.PkgInt.SHIFT_MASK_4BITS;
+import static org.mozilla.universalchardet.prober.statemachine.PkgInt.BIT_SHIFT_4BITS;
+import static org.mozilla.universalchardet.prober.statemachine.PkgInt.UNIT_MASK_4BITS;
+
+
 public class HZSMModel extends SMModel
 {
     ////////////////////////////////////////////////////////////////
     // constants
     ////////////////////////////////////////////////////////////////
-    public static final int HSZ_CLASS_FACTOR = 6;
+    public static final int HZS_CLASS_FACTOR = 6;
     
     
     ////////////////////////////////////////////////////////////////
@@ -51,10 +57,10 @@ public class HZSMModel extends SMModel
     public HZSMModel()
     {
         super(
-                new PkgInt(INDEX_SHIFT_4BITS, SHIFT_MASK_4BITS, BIT_SHIFT_4BITS, UNIT_MASK_4BITS, hszClassTable),
-                HSZ_CLASS_FACTOR,
-                new PkgInt(INDEX_SHIFT_4BITS, SHIFT_MASK_4BITS, BIT_SHIFT_4BITS, UNIT_MASK_4BITS, hszStateTable),
-                hszCharLenTable,
+                new PkgInt(INDEX_SHIFT_4BITS, SHIFT_MASK_4BITS, BIT_SHIFT_4BITS, UNIT_MASK_4BITS, hzsClassTable),
+                HZS_CLASS_FACTOR,
+                new PkgInt(INDEX_SHIFT_4BITS, SHIFT_MASK_4BITS, BIT_SHIFT_4BITS, UNIT_MASK_4BITS, hzsStateTable),
+                hzsCharLenTable,
                 "HZ-GB-2312"
                 );
     }
@@ -63,7 +69,7 @@ public class HZSMModel extends SMModel
     ////////////////////////////////////////////////////////////////
     // constants continued
     ////////////////////////////////////////////////////////////////
-    private static int[] hszClassTable = new int[] {
+    private static int[] hzsClassTable = new int[] {
         PkgInt.pack4bits(1,0,0,0,0,0,0,0),  // 00 - 07 
         PkgInt.pack4bits(0,0,0,0,0,0,0,0),  // 08 - 0f 
         PkgInt.pack4bits(0,0,0,0,0,0,0,0),  // 10 - 17 
@@ -98,7 +104,7 @@ public class HZSMModel extends SMModel
         PkgInt.pack4bits(1,1,1,1,1,1,1,1)   // f8 - ff 
     };
     
-    private static int[] hszStateTable = new int[] {
+    private static int[] hzsStateTable = new int[] {
         PkgInt.pack4bits(START,ERROR,    3,START,START,START,ERROR,ERROR),//00-07 
         PkgInt.pack4bits(ERROR,ERROR,ERROR,ERROR,ITSME,ITSME,ITSME,ITSME),//08-0f 
         PkgInt.pack4bits(ITSME,ITSME,ERROR,ERROR,START,START,    4,ERROR),//10-17 
@@ -107,7 +113,7 @@ public class HZSMModel extends SMModel
         PkgInt.pack4bits(    4,ITSME,START,START,START,START,START,START) //28-2f 
     };
     
-    private static int[] hszCharLenTable = new int[] {
+    private static int[] hzsCharLenTable = new int[] {
         0, 0, 0, 0, 0, 0
     };
 }

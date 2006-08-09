@@ -47,12 +47,12 @@ public class GB18030Prober extends CharsetProber
     ////////////////////////////////////////////////////////////////
     // fields
     ////////////////////////////////////////////////////////////////
-    private CodingStateMachine             codingSM;
-    private ProbingState                 state;
+    private CodingStateMachine          codingSM;
+    private ProbingState                state;
     
-    private GB2312DistributionAnalysis     distributionAnalyzer;
+    private GB2312DistributionAnalysis  distributionAnalyzer;
     
-    private byte[]                        lastChar;
+    private byte[]                      lastChar;
 
     private static final SMModel smModel = new GB18030SMModel();
 
@@ -133,6 +133,7 @@ public class GB18030Prober extends CharsetProber
         this.codingSM.reset();
         this.state = ProbingState.DETECTING;
         this.distributionAnalyzer.reset();
+        java.util.Arrays.fill(this.lastChar, (byte)0);
     }
 
     @Override

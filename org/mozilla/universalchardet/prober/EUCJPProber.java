@@ -49,13 +49,13 @@ public class EUCJPProber extends CharsetProber
     ////////////////////////////////////////////////////////////////
     // fields
     ////////////////////////////////////////////////////////////////
-    private CodingStateMachine             codingSM;
-    private ProbingState                 state;
+    private CodingStateMachine          codingSM;
+    private ProbingState                state;
     
     private EUCJPContextAnalysis        contextAnalyzer;
-    private EUCJPDistributionAnalysis     distributionAnalyzer;
+    private EUCJPDistributionAnalysis   distributionAnalyzer;
     
-    private byte[]                        lastChar;
+    private byte[]                      lastChar;
 
     private static final SMModel smModel = new EUCJPSMModel();
 
@@ -142,6 +142,7 @@ public class EUCJPProber extends CharsetProber
         this.state = ProbingState.DETECTING;
         this.contextAnalyzer.reset();
         this.distributionAnalyzer.reset();
+        java.util.Arrays.fill(this.lastChar, (byte)0);
     }
 
     @Override

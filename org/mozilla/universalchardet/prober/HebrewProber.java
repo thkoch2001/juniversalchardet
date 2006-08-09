@@ -42,18 +42,18 @@ public class HebrewProber extends CharsetProber
     ////////////////////////////////////////////////////////////////
     // fields
     ////////////////////////////////////////////////////////////////
-    public static final int FINAL_KAF    = 0xEA;
-    public static final int NORMAL_KAF    = 0xEB;
-    public static final int FINAL_MEM    = 0xED;
-    public static final int NORMAL_MEM    = 0xEE;
-    public static final int FINAL_NUN    = 0xEF;
-    public static final int NORMAL_NUN    = 0xF0;
+    public static final int FINAL_KAF   = 0xEA;
+    public static final int NORMAL_KAF  = 0xEB;
+    public static final int FINAL_MEM   = 0xED;
+    public static final int NORMAL_MEM  = 0xEE;
+    public static final int FINAL_NUN   = 0xEF;
+    public static final int NORMAL_NUN  = 0xF0;
     public static final int FINAL_PE    = 0xF3;
-    public static final int NORMAL_PE    = 0xF4;
-    public static final int FINAL_TSADI    = 0xF5;
-    public static final int NORMAL_TSADI = 0xF6;
+    public static final int NORMAL_PE   = 0xF4;
+    public static final int FINAL_TSADI = 0xF5;
+    public static final int NORMAL_TSADI= 0xF6;
     
-    public static final byte SPACE = 0x20;
+    public static final byte SPACE      = 0x20;
     
     public static final int MIN_FINAL_CHAR_DISTANCE = 5;
     public static final float MIN_MODEL_DISTANCE = 0.01f;
@@ -67,8 +67,8 @@ public class HebrewProber extends CharsetProber
     ////////////////////////////////////////////////////////////////
     private int     finalCharLogicalScore;
     private int     finalCharVisualScore;
-    private byte     prev;
-    private byte     beforePrev;
+    private byte    prev;
+    private byte    beforePrev;
     
     private CharsetProber logicalProber;
     private CharsetProber visualProber;

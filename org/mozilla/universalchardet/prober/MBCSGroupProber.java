@@ -45,10 +45,10 @@ public class MBCSGroupProber extends CharsetProber
     // fields
     ////////////////////////////////////////////////////////////////
     private ProbingState        state;
-    private CharsetProber[]        probers;
-    private boolean[]            isActive;
-    private int                    bestGuess;
-    private int                    activeNum;
+    private CharsetProber[]     probers;
+    private boolean[]           isActive;
+    private int                 bestGuess;
+    private int                 activeNum;
 
 
     ////////////////////////////////////////////////////////////////

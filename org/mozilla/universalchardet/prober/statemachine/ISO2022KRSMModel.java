@@ -37,6 +37,12 @@
 
 package org.mozilla.universalchardet.prober.statemachine;
 
+import static org.mozilla.universalchardet.prober.statemachine.PkgInt.INDEX_SHIFT_4BITS;
+import static org.mozilla.universalchardet.prober.statemachine.PkgInt.SHIFT_MASK_4BITS;
+import static org.mozilla.universalchardet.prober.statemachine.PkgInt.BIT_SHIFT_4BITS;
+import static org.mozilla.universalchardet.prober.statemachine.PkgInt.UNIT_MASK_4BITS;
+
+
 public class ISO2022KRSMModel extends SMModel
 {
     ////////////////////////////////////////////////////////////////

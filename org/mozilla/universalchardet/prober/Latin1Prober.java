@@ -60,9 +60,9 @@ public class Latin1Prober extends CharsetProber
     ////////////////////////////////////////////////////////////////
     // fields
     ////////////////////////////////////////////////////////////////
-    private ProbingState        state;
-    private byte                lastCharClass;
-    private int[]                freqCounter;
+    private ProbingState    state;
+    private byte            lastCharClass;
+    private int[]           freqCounter;
     
 
     ////////////////////////////////////////////////////////////////

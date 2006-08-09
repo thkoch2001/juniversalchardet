@@ -47,12 +47,12 @@ public class EUCTWProber extends CharsetProber
     ////////////////////////////////////////////////////////////////
     // fields
     ////////////////////////////////////////////////////////////////
-    private CodingStateMachine             codingSM;
-    private ProbingState                 state;
+    private CodingStateMachine          codingSM;
+    private ProbingState                state;
     
-    private EUCTWDistributionAnalysis     distributionAnalyzer;
+    private EUCTWDistributionAnalysis   distributionAnalyzer;
     
-    private byte[]                        lastChar;
+    private byte[]                      lastChar;
 
     private static final SMModel smModel = new EUCTWSMModel();
 
@@ -133,6 +133,7 @@ public class EUCTWProber extends CharsetProber
         this.codingSM.reset();
         this.state = ProbingState.DETECTING;
         this.distributionAnalyzer.reset();
+        java.util.Arrays.fill(this.lastChar, (byte)0);
     }
 
     @Override

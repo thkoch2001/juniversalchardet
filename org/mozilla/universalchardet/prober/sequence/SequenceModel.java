@@ -43,10 +43,10 @@ public abstract class SequenceModel
     ////////////////////////////////////////////////////////////////
     // fields
     ////////////////////////////////////////////////////////////////
-    protected short[]     charToOrderMap;
+    protected short[]   charToOrderMap;
     protected byte[]    precedenceMatrix;
-    protected float        typicalPositiveRatio;
-    protected boolean    keepEnglishLetter;
+    protected float     typicalPositiveRatio;
+    protected boolean   keepEnglishLetter;
     protected String    charsetName;
     
 

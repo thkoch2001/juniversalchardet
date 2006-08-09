@@ -69,15 +69,15 @@ public class UniversalDetector
     ////////////////////////////////////////////////////////////////
     private InputState  inputState;
     private boolean     done;
-    private boolean        start;
-    private boolean        gotData;
+    private boolean     start;
+    private boolean     gotData;
     private byte        lastChar;
-    private String        detectedCharset;
+    private String      detectedCharset;
 
-    private CharsetProber[]        probers;
-    private CharsetProber        escCharsetProber;
+    private CharsetProber[]     probers;
+    private CharsetProber       escCharsetProber;
     
-    private CharsetListener        listener;
+    private CharsetListener     listener;
 
     
     ////////////////////////////////////////////////////////////////
@@ -98,6 +98,21 @@ public class UniversalDetector
     public boolean isDone()
     {
         return this.done;
+    }
+    
+    public String getDetectedCharset()
+    {
+        return this.detectedCharset;
+    }
+    
+    public void setListener(CharsetListener listener)
+    {
+        this.listener = listener;
+    }
+    
+    public CharsetListener getListener()
+    {
+        return this.listener;
     }
     
     public void handleData(final byte[] buf, int offset, int length)

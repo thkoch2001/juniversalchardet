@@ -73,12 +73,15 @@ public abstract class JapaneseContextAnalysis
     private int     needToSkipCharNum;
     private boolean done;
     
+    private Order   tmpOrder;
+    
     
     ////////////////////////////////////////////////////////////////
     // methods
     ////////////////////////////////////////////////////////////////
     public JapaneseContextAnalysis()
     {
+        tmpOrder = new Order();
         reset();
     }
     
@@ -95,23 +98,22 @@ public abstract class JapaneseContextAnalysis
         // is complete, but since a character will not make much difference, by simply skipping
         // this character will simply our logic and improve performance.
         int maxPos = offset + length;
-        Order order = new Order();
 
         for (int i=this.needToSkipCharNum+offset; i<maxPos; ) {
-            getOrder(order, buf, i);
-            i += order.charLength;
+            getOrder(this.tmpOrder, buf, i);
+            i += this.tmpOrder.charLength;
             
             if (i > maxPos) {
                 this.needToSkipCharNum = i - maxPos;
                 this.lastCharOrder = -1;
             } else {
-                if (order.order != -1 && this.lastCharOrder != -1) {
+                if (this.tmpOrder.order != -1 && this.lastCharOrder != -1) {
                     ++this.totalRel;
                     if (this.totalRel > MAX_REL_THRESHOLD) {
                         this.done = true;
                         break;
                     }
-                    ++this.relSample[jp2CharContext[this.lastCharOrder][order.order]];
+                    ++this.relSample[jp2CharContext[this.lastCharOrder][this.tmpOrder.order]];
                 }
             }
         }

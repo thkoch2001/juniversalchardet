@@ -57,12 +57,13 @@ public class SBCSGroupProber extends CharsetProber
     ////////////////////////////////////////////////////////////////
     // fields
     ////////////////////////////////////////////////////////////////
-    private ProbingState         state;
-    private CharsetProber[]        probers;
-    private boolean[]            isActive;
-    private int                    bestGuess;
-    private int                    activeNum;
-    
+    private ProbingState        state;
+    private CharsetProber[]     probers;
+    private boolean[]           isActive;
+    private int                 bestGuess;
+    private int                 activeNum;
+
+
     // models
     private static final SequenceModel win1251Model = new Win1251Model();
     private static final SequenceModel koi8rModel = new Koi8rModel();
