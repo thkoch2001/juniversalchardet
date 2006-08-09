@@ -42,72 +42,72 @@ public abstract class SMModel
     ////////////////////////////////////////////////////////////////
     // constants
     ////////////////////////////////////////////////////////////////
-	public static final int START	= 0;
-	public static final int ERROR	= 1;
-	public static final int ITSME	= 2;
-	
-	public static final int INDEX_SHIFT_4BITS 	= 3;
-	public static final int INDEX_SHIFT_8BITS 	= 2;
-	public static final int INDEX_SHIFT_16BITS 	= 1;
-	
-	public static final int SHIFT_MASK_4BITS 	= 7;
-	public static final int SHIFT_MASK_8BITS 	= 3;
-	public static final int SHIFT_MASK_16BITS 	= 1;
-	
-	public static final int BIT_SHIFT_4BITS 	= 2;
-	public static final int BIT_SHIFT_8BITS 	= 3;
-	public static final int BIT_SHIFT_16BITS 	= 4;
-	
-	public static final int UNIT_MASK_4BITS 	= 0x0000000F;
-	public static final int UNIT_MASK_8BITS 	= 0x000000FF;
-	public static final int UNIT_MASK_16BITS 	= 0x0000FFFF;
-	
+    public static final int START    = 0;
+    public static final int ERROR    = 1;
+    public static final int ITSME    = 2;
+    
+    public static final int INDEX_SHIFT_4BITS     = 3;
+    public static final int INDEX_SHIFT_8BITS     = 2;
+    public static final int INDEX_SHIFT_16BITS     = 1;
+    
+    public static final int SHIFT_MASK_4BITS     = 7;
+    public static final int SHIFT_MASK_8BITS     = 3;
+    public static final int SHIFT_MASK_16BITS     = 1;
+    
+    public static final int BIT_SHIFT_4BITS     = 2;
+    public static final int BIT_SHIFT_8BITS     = 3;
+    public static final int BIT_SHIFT_16BITS     = 4;
+    
+    public static final int UNIT_MASK_4BITS     = 0x0000000F;
+    public static final int UNIT_MASK_8BITS     = 0x000000FF;
+    public static final int UNIT_MASK_16BITS     = 0x0000FFFF;
+    
 
     ////////////////////////////////////////////////////////////////
     // fields
     ////////////////////////////////////////////////////////////////
-	protected PkgInt		classTable;
-	protected int			classFactor;
-	protected PkgInt		stateTable;
-	protected int[]			charLenTable;
-	protected String		name;
-	
-	
-	////////////////////////////////////////////////////////////////
+    protected PkgInt        classTable;
+    protected int            classFactor;
+    protected PkgInt        stateTable;
+    protected int[]            charLenTable;
+    protected String        name;
+    
+    
+    ////////////////////////////////////////////////////////////////
     // methods
     ////////////////////////////////////////////////////////////////
-	public SMModel(
-			PkgInt classTable,
-			int classFactor,
-			PkgInt stateTable,
-			int[] charLenTable,
-			String name)
-	{
-		this.classTable = classTable;
-		this.classFactor = classFactor;
-		this.stateTable = stateTable;
-		this.charLenTable = charLenTable;
-		this.name = name;
-	}
-	
-	public int getClass(byte b)
-	{
-		int c = b & 0xFF;
-		return this.classTable.unpack(c);
-	}
-	
-	public int getNextState(int cls, int currentState)
-	{
-		return this.stateTable.unpack(currentState * this.classFactor + cls);
-	}
-	
-	public int getCharLen(int cls)
-	{
-		return this.charLenTable[cls];
-	}
-	
-	public String getName()
-	{
-		return this.name;
-	}
+    public SMModel(
+            PkgInt classTable,
+            int classFactor,
+            PkgInt stateTable,
+            int[] charLenTable,
+            String name)
+    {
+        this.classTable = classTable;
+        this.classFactor = classFactor;
+        this.stateTable = stateTable;
+        this.charLenTable = charLenTable;
+        this.name = name;
+    }
+    
+    public int getClass(byte b)
+    {
+        int c = b & 0xFF;
+        return this.classTable.unpack(c);
+    }
+    
+    public int getNextState(int cls, int currentState)
+    {
+        return this.stateTable.unpack(currentState * this.classFactor + cls);
+    }
+    
+    public int getCharLen(int cls)
+    {
+        return this.charLenTable[cls];
+    }
+    
+    public String getName()
+    {
+        return this.name;
+    }
 }

@@ -49,11 +49,11 @@ public class UniversalDetector
     ////////////////////////////////////////////////////////////////
     // constants
     ////////////////////////////////////////////////////////////////
-	public static final float SHORTCUT_THRESHOLD = 0.95f;
-	public static final float MINIMUM_THRESHOLD = 0.20f;
-	
+    public static final float SHORTCUT_THRESHOLD = 0.95f;
+    public static final float MINIMUM_THRESHOLD = 0.20f;
+    
 
-	////////////////////////////////////////////////////////////////
+    ////////////////////////////////////////////////////////////////
     // inner types
     ////////////////////////////////////////////////////////////////
     public enum InputState
@@ -69,15 +69,15 @@ public class UniversalDetector
     ////////////////////////////////////////////////////////////////
     private InputState  inputState;
     private boolean     done;
-    private boolean		start;
-    private boolean		gotData;
-    private byte		lastChar;
-    private String		detectedCharset;
+    private boolean        start;
+    private boolean        gotData;
+    private byte        lastChar;
+    private String        detectedCharset;
 
-    private CharsetProber[]		probers;
-    private CharsetProber		escCharsetProber;
+    private CharsetProber[]        probers;
+    private CharsetProber        escCharsetProber;
     
-    private CharsetListener		listener;
+    private CharsetListener        listener;
 
     
     ////////////////////////////////////////////////////////////////
@@ -85,186 +85,186 @@ public class UniversalDetector
     ////////////////////////////////////////////////////////////////
     public UniversalDetector(CharsetListener listener)
     {
-    	this.listener = listener;
-    	this.escCharsetProber = null;
-    	this.probers = new CharsetProber[3];
-    	for (int i=0; i<this.probers.length; ++i) {
-    		this.probers[i] = null;
-    	}
-    	
-    	reset();
+        this.listener = listener;
+        this.escCharsetProber = null;
+        this.probers = new CharsetProber[3];
+        for (int i=0; i<this.probers.length; ++i) {
+            this.probers[i] = null;
+        }
+        
+        reset();
     }
     
     public boolean isDone()
     {
-    	return this.done;
+        return this.done;
     }
     
     public void handleData(final byte[] buf, int offset, int length)
     {
         if (this.done) {
-        	return;
+            return;
         }
         
         if (length > 0) {
-        	this.gotData = true;
+            this.gotData = true;
         }
         
         if (this.start) {
-        	this.start = false;
-        	if (length > 3) {
-        		int b1 = buf[offset] & 0xFF;
-        		int b2 = buf[offset+1] & 0xFF;
-        		int b3 = buf[offset+2] & 0xFF;
-        		int b4 = buf[offset+3] & 0xFF;
-        		
-        		switch (b1) {
-        		case 0xEF:
-        			if (b2 == 0xBB && b3 == 0xBF) {
-        				this.detectedCharset = "UTF-8";
-        			}
-    				break;
-        		case 0xFE:
-        			if (b2 == 0xFF && b3 == 0x00 && b4 == 0x00) {
-        				this.detectedCharset = "X-ISO-10646-UCS-4-3412";
-        			} else if (b2 == 0xFF) {
-        				this.detectedCharset = "UTF-16BE";
-        			}
-        			break;
-        		case 0x00:
-        			if (b2 == 0x00 && b3 == 0xFE && b4 == 0xFF) {
-        				this.detectedCharset = "UTF-32BE";
-        			} else if (b2 == 0x00 && b3 == 0xFF && b4 == 0xFE) {
-        				this.detectedCharset = "X-ISO-10646-UCS-4-2143";
-        			}
-        			break;
-        		case 0xFF:
-        			if (b2 == 0xFE && b3 == 0x00 && b4 == 0x00) {
-        				this.detectedCharset = "UTF-32LE";
-        			} else if (b2 == 0xFE) {
-        				this.detectedCharset = "UTF-16LE";
-        			}
-        			break;
-        		} // swich end
-        		
-        		if (this.detectedCharset != null) {
-        			this.done = true;
-        			return;
-        		}
-        	}
+            this.start = false;
+            if (length > 3) {
+                int b1 = buf[offset] & 0xFF;
+                int b2 = buf[offset+1] & 0xFF;
+                int b3 = buf[offset+2] & 0xFF;
+                int b4 = buf[offset+3] & 0xFF;
+                
+                switch (b1) {
+                case 0xEF:
+                    if (b2 == 0xBB && b3 == 0xBF) {
+                        this.detectedCharset = "UTF-8";
+                    }
+                    break;
+                case 0xFE:
+                    if (b2 == 0xFF && b3 == 0x00 && b4 == 0x00) {
+                        this.detectedCharset = "X-ISO-10646-UCS-4-3412";
+                    } else if (b2 == 0xFF) {
+                        this.detectedCharset = "UTF-16BE";
+                    }
+                    break;
+                case 0x00:
+                    if (b2 == 0x00 && b3 == 0xFE && b4 == 0xFF) {
+                        this.detectedCharset = "UTF-32BE";
+                    } else if (b2 == 0x00 && b3 == 0xFF && b4 == 0xFE) {
+                        this.detectedCharset = "X-ISO-10646-UCS-4-2143";
+                    }
+                    break;
+                case 0xFF:
+                    if (b2 == 0xFE && b3 == 0x00 && b4 == 0x00) {
+                        this.detectedCharset = "UTF-32LE";
+                    } else if (b2 == 0xFE) {
+                        this.detectedCharset = "UTF-16LE";
+                    }
+                    break;
+                } // swich end
+                
+                if (this.detectedCharset != null) {
+                    this.done = true;
+                    return;
+                }
+            }
         } // if (start) end
         
         int maxPos = offset + length;
         for (int i=offset; i<maxPos; ++i) {
-        	int c = buf[i] & 0xFF;
-        	if ((c & 0x80) != 0 && c != 0xA0) {
-        		if (this.inputState != InputState.HIGHBYTE) {
-        			this.inputState = InputState.HIGHBYTE;
-        			
-        			if (this.escCharsetProber != null) {
-        				this.escCharsetProber = null;
-        			}
-        			
-        			if (this.probers[0] == null) {
-        				this.probers[0] = new MBCSGroupProber();
-        			}
-        			if (this.probers[1] == null) {
-        				this.probers[1] = new SBCSGroupProber();
-        			}
-        			if (this.probers[2] == null) {
-        				this.probers[2] = new Latin1Prober();
-        			}
-        		}
-        	} else {
-        		if (this.inputState == InputState.PURE_ASCII &&
-        			(c == 0x1B || (c == 0x7B && this.lastChar == 0x7E))) {
-        			this.inputState = InputState.ESC_ASCII;
-        		}
-        		this.lastChar = buf[i];
-        	}
+            int c = buf[i] & 0xFF;
+            if ((c & 0x80) != 0 && c != 0xA0) {
+                if (this.inputState != InputState.HIGHBYTE) {
+                    this.inputState = InputState.HIGHBYTE;
+                    
+                    if (this.escCharsetProber != null) {
+                        this.escCharsetProber = null;
+                    }
+                    
+                    if (this.probers[0] == null) {
+                        this.probers[0] = new MBCSGroupProber();
+                    }
+                    if (this.probers[1] == null) {
+                        this.probers[1] = new SBCSGroupProber();
+                    }
+                    if (this.probers[2] == null) {
+                        this.probers[2] = new Latin1Prober();
+                    }
+                }
+            } else {
+                if (this.inputState == InputState.PURE_ASCII &&
+                    (c == 0x1B || (c == 0x7B && this.lastChar == 0x7E))) {
+                    this.inputState = InputState.ESC_ASCII;
+                }
+                this.lastChar = buf[i];
+            }
         } // for end
         
         CharsetProber.ProbingState st;
         if (this.inputState == InputState.ESC_ASCII) {
-        	if (this.escCharsetProber == null) {
-        		this.escCharsetProber = new EscCharsetProber();
-        	}
-        	st = this.escCharsetProber.handleData(buf, offset, length);
-        	if (st == CharsetProber.ProbingState.FOUND_IT) {
-        		this.done = true;
-        		this.detectedCharset = this.escCharsetProber.getCharSetName();
-        	}
+            if (this.escCharsetProber == null) {
+                this.escCharsetProber = new EscCharsetProber();
+            }
+            st = this.escCharsetProber.handleData(buf, offset, length);
+            if (st == CharsetProber.ProbingState.FOUND_IT) {
+                this.done = true;
+                this.detectedCharset = this.escCharsetProber.getCharSetName();
+            }
         } else if (this.inputState == InputState.HIGHBYTE) {
-        	for (int i=0; i<this.probers.length; ++i) {
-        		st = this.probers[i].handleData(buf, offset, length);
-        		if (st == CharsetProber.ProbingState.FOUND_IT) {
-        			this.done = true;
-        			this.detectedCharset = this.probers[i].getCharSetName();
-        			return;
-        		}
-        	}
+            for (int i=0; i<this.probers.length; ++i) {
+                st = this.probers[i].handleData(buf, offset, length);
+                if (st == CharsetProber.ProbingState.FOUND_IT) {
+                    this.done = true;
+                    this.detectedCharset = this.probers[i].getCharSetName();
+                    return;
+                }
+            }
         } else { // pure ascii
-        	// do nothing
+            // do nothing
         }
     }
     
     public void dataEnd()
     {
-    	if (!this.gotData) {
-    		return;
-    	}
-    	
-    	if (this.detectedCharset != null) {
-    		this.done = true;
-    		if (this.listener != null) {
-    			this.listener.report(this.detectedCharset);
-    		}
-    		return;
-    	}
-    	
-    	if (this.inputState == InputState.HIGHBYTE) {
-    		float proberConfidence;
-    		float maxProberConfidence = 0.0f;
-    		int maxProber = 0;
-    		
-    		for (int i=0; i<this.probers.length; ++i) {
-    			proberConfidence = this.probers[i].getConfidence();
-    			if (proberConfidence > maxProberConfidence) {
-    				maxProberConfidence = proberConfidence;
-    				maxProber = i;
-    			}
-    		}
-    		
-    		if (maxProberConfidence > MINIMUM_THRESHOLD) {
-    			if (this.listener != null) {
-    				this.listener.report(this.probers[maxProber].getCharSetName());
-    			}
-    		}
-    	} else if (this.inputState == InputState.ESC_ASCII) {
-    		// do nothing
-    	} else {
-    		// do nothing
-    	}
+        if (!this.gotData) {
+            return;
+        }
+        
+        if (this.detectedCharset != null) {
+            this.done = true;
+            if (this.listener != null) {
+                this.listener.report(this.detectedCharset);
+            }
+            return;
+        }
+        
+        if (this.inputState == InputState.HIGHBYTE) {
+            float proberConfidence;
+            float maxProberConfidence = 0.0f;
+            int maxProber = 0;
+            
+            for (int i=0; i<this.probers.length; ++i) {
+                proberConfidence = this.probers[i].getConfidence();
+                if (proberConfidence > maxProberConfidence) {
+                    maxProberConfidence = proberConfidence;
+                    maxProber = i;
+                }
+            }
+            
+            if (maxProberConfidence > MINIMUM_THRESHOLD) {
+                if (this.listener != null) {
+                    this.listener.report(this.probers[maxProber].getCharSetName());
+                }
+            }
+        } else if (this.inputState == InputState.ESC_ASCII) {
+            // do nothing
+        } else {
+            // do nothing
+        }
     }
     
     public void reset()
     {
-    	this.done = false;
-    	this.start = true;
-    	this.detectedCharset = null;
-    	this.gotData = false;
-    	this.inputState = InputState.PURE_ASCII;
-    	this.lastChar = 0;
-    	
-    	if (this.escCharsetProber != null) {
-    		this.escCharsetProber.reset();
-    	}
-    	
-    	for (int i=0; i<this.probers.length; ++i) {
-    		if (this.probers[i] != null) {
-    			this.probers[i].reset();
-    		}
-    	}
+        this.done = false;
+        this.start = true;
+        this.detectedCharset = null;
+        this.gotData = false;
+        this.inputState = InputState.PURE_ASCII;
+        this.lastChar = 0;
+        
+        if (this.escCharsetProber != null) {
+            this.escCharsetProber.reset();
+        }
+        
+        for (int i=0; i<this.probers.length; ++i) {
+            if (this.probers[i] != null) {
+                this.probers[i].reset();
+            }
+        }
     }
     
     
@@ -273,27 +273,27 @@ public class UniversalDetector
     ////////////////////////////////////////////////////////////////
     public static void main(String[] args) throws Exception
     {
-    	if (args.length != 1) {
-    		System.out.println("USAGE: java UniversalDetector filename");
-    		return;
-    	}
+        if (args.length != 1) {
+            System.out.println("USAGE: java UniversalDetector filename");
+            return;
+        }
 
-    	UniversalDetector detector = new UniversalDetector(
-    			new CharsetListener() {
-    				public void report(String name)
-    				{
-    					System.out.println("charset = " + name);
-    				}
-    			}
-    			);
-    	
-    	byte[] buf = new byte[4096];
-    	java.io.FileInputStream fis = new java.io.FileInputStream(args[0]);
-    	
-    	int nread;
-    	while ((nread = fis.read(buf)) > 0 && !detector.isDone()) {
-    		detector.handleData(buf, 0, nread);
-    	}
-    	detector.dataEnd();
+        UniversalDetector detector = new UniversalDetector(
+                new CharsetListener() {
+                    public void report(String name)
+                    {
+                        System.out.println("charset = " + name);
+                    }
+                }
+                );
+        
+        byte[] buf = new byte[4096];
+        java.io.FileInputStream fis = new java.io.FileInputStream(args[0]);
+        
+        int nread;
+        while ((nread = fis.read(buf)) > 0 && !detector.isDone()) {
+            detector.handleData(buf, 0, nread);
+        }
+        detector.dataEnd();
     }
 }

@@ -39,43 +39,43 @@ package org.mozilla.universalchardet.prober.statemachine;
 
 public class CodingStateMachine
 {
-	protected SMModel	model;
-	protected int		currentState;
-	protected int		currentCharLen;
-	protected int		currentBytePos;
-	
-	public CodingStateMachine(SMModel model)
-	{
-		this.model = model;
-		this.currentState = SMModel.START;
-	}
-	
-	public int nextState(byte c)
-	{
-		int byteCls = this.model.getClass(c);
-		if (this.currentState == SMModel.START) {
-			this.currentBytePos = 0;
-			this.currentCharLen = this.model.getCharLen(byteCls);
-		}
-		
-		this.currentState = this.model.getNextState(byteCls, this.currentState);
-		++this.currentBytePos;
-		
-		return this.currentState;
-	}
-	
-	public int getCurrentCharLen()
-	{
-		return this.currentCharLen;
-	}
-	
-	public void reset()
-	{
-		this.currentState = SMModel.START;
-	}
-	
-	public String getCodingStateMachine()
-	{
-		return this.model.getName();
-	}
+    protected SMModel    model;
+    protected int        currentState;
+    protected int        currentCharLen;
+    protected int        currentBytePos;
+    
+    public CodingStateMachine(SMModel model)
+    {
+        this.model = model;
+        this.currentState = SMModel.START;
+    }
+    
+    public int nextState(byte c)
+    {
+        int byteCls = this.model.getClass(c);
+        if (this.currentState == SMModel.START) {
+            this.currentBytePos = 0;
+            this.currentCharLen = this.model.getCharLen(byteCls);
+        }
+        
+        this.currentState = this.model.getNextState(byteCls, this.currentState);
+        ++this.currentBytePos;
+        
+        return this.currentState;
+    }
+    
+    public int getCurrentCharLen()
+    {
+        return this.currentCharLen;
+    }
+    
+    public void reset()
+    {
+        this.currentState = SMModel.START;
+    }
+    
+    public String getCodingStateMachine()
+    {
+        return this.model.getName();
+    }
 }
