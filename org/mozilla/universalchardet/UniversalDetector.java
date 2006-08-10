@@ -259,8 +259,9 @@ public class UniversalDetector
             }
             
             if (maxProberConfidence > MINIMUM_THRESHOLD) {
+                this.detectedCharset = this.probers[maxProber].getCharSetName();
                 if (this.listener != null) {
-                    this.listener.report(this.probers[maxProber].getCharSetName());
+                    this.listener.report(this.detectedCharset);
                 }
             }
         } else if (this.inputState == InputState.ESC_ASCII) {
