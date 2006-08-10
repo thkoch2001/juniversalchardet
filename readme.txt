@@ -15,7 +15,6 @@ http://lxr.mozilla.org/seamonkey/source/extensions/universalchardet/
 - Chinese
   - ISO-2022-CN
   - Big5
-  - EUC-CN
   - X-EUC-TW
   - GB18030
   - HZ-GB-2312
