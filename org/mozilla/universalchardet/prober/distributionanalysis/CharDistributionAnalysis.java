@@ -46,6 +46,7 @@ public abstract class CharDistributionAnalysis
     public static final float   SURE_NO = 0.01f;
     public static final float   SURE_YES = 0.99f;
     public static final int     ENOUGH_DATA_THRESHOLD = 1024;
+    public static final int     MINIMUM_DATA_THRESHOLD = 4;
     
 
     ////////////////////////////////////////////////////////////////
@@ -89,7 +90,7 @@ public abstract class CharDistributionAnalysis
     
     public float getConfidence()
     {
-        if (this.totalChars <= 0) {
+        if (this.totalChars <= 0 || this.freqChars <= MINIMUM_DATA_THRESHOLD) {
             return SURE_NO;
         }
         
