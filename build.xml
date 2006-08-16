@@ -10,12 +10,13 @@
 
 	<target name="init">
 		<mkdir dir="${dist}"/>
+		<mkdir dir="${dist}/classes"/>
 	</target>
 	
 	<target name="compile" depends="init">
 		<javac	sourcepath=""
 				srcdir="${src}"
-				destdir="${dist}">
+				destdir="${dist}/classes">
 			<include name="**/*.java"/>
 			<exclude name="**/.svn/"/>
 			<exclude name="**/*Test.java"/>
@@ -23,8 +24,8 @@
 	</target>
 	
 	<target name="dist" depends="compile">
-		<jar	destfile="juniversalchardet-${version}.jar"
-				basedir="${dist}"
+		<jar	destfile="${dist}/juniversalchardet-${version}.jar"
+				basedir="${dist}/classes"
 				excludes="**/.svn/"
 		/>
 	</target>
