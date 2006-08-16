@@ -13,10 +13,13 @@
 	</target>
 	
 	<target name="compile" depends="init">
-		<javac	srcdir="${src}"
-				destdir="${dist}"
-				excludes="**/.svn/"
-		/>
+		<javac	sourcepath=""
+				srcdir="${src}"
+				destdir="${dist}">
+			<include name="**/*.java"/>
+			<exclude name="**/.svn/"/>
+			<exclude name="**/*Test.java"/>
+		</javac>
 	</target>
 	
 	<target name="dist" depends="compile">
