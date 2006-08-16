@@ -3,5 +3,30 @@
 	<description>
 		A Java port of Mozilla's universalchardet.
 	</description>
+
+	<property name="src" location="src"/>
+	<property name="dist" location="dist"/>
+	<property name="version" value="1.0"/>
+
+	<target name="init">
+		<mkdir dir="${dist}"/>
+	</target>
 	
+	<target name="compile" depends="init">
+		<javac	srcdir="${src}"
+				destdir="${dist}"
+				excludes="**/.svn/"
+		/>
+	</target>
+	
+	<target name="dist" depends="compile">
+		<jar	destfile="juniversalchardet-${version}.jar"
+				basedir="${dist}"
+				excludes="**/.svn/"
+		/>
+	</target>
+	
+	<target name="clean">
+		<delete dir="${dist}"/>
+	</target>
 </project>
