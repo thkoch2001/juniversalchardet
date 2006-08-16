@@ -1,0 +1,7 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<project name="juniversalchardet" default="dist" basedir=".">
+	<description>
+		A Java port of Mozilla's universalchardet.
+	</description>
+	
+</project>
