@@ -9,6 +9,9 @@ that is the encoding detector library of Mozilla.
 The original code of universalchardet is available at
 http://lxr.mozilla.org/seamonkey/source/extensions/universalchardet/
 
+Techniques used by universalchardet are described at
+http://www.mozilla.org/projects/intl/UniversalCharsetDetection.html
+
 
 2. Encodings that can be detected
 
@@ -101,7 +104,18 @@ public class TestDetector
 }
 
 
-4. License
+4. Related Woks
+
+- jchardet  http://jchardet.sourceforge.net/
+
+jchardet is another Java port of the Mozilla's encoding dectection library.
+The main difference between jchardet and juniversalchardet is the modules
+that they based on. jchardet is based on the "chardet" module which has
+long existed and rather old. juniversalchardet is based on "universalchardet"
+module which is new and provides better accuracy on detection results.
+
+
+5. License
 
 The library is subject to the Mozilla Public License Version 1.1.
 Alternatively, the library may be used under the terms of either
