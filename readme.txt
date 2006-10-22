@@ -109,11 +109,10 @@ public class TestDetector
 - jchardet  http://jchardet.sourceforge.net/
 
 jchardet is another Java port of the Mozilla's encoding dectection library.
-The main difference between jchardet and juniversalchardet is the modules
-that they based on. jchardet is based on the "chardet" module which has
-long existed and rather old. juniversalchardet is based on
-the "universalchardet" module which is new and provides better accuracy on
-detection results.
+The main difference between jchardet and juniversalchardet is modules
+they are based on. jchardet is based on the "chardet" module that has
+long existed. juniversalchardet is based on the "universalchardet" module
+that is new and generally provides better accuracy on detection results.
 
 
 5. License
