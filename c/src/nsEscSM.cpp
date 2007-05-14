@@ -20,6 +20,7 @@
  * the Initial Developer. All Rights Reserved.
  *
  * Contributor(s):
+ *   Kazutoshi Satoda
  *
  * Alternatively, the contents of this file may be used under the terms of
  * either the GNU General Public License Version 2 or later (the "GPL"), or
@@ -197,7 +198,7 @@ PCK4BITS(eError,eError,eError,eItsMe,eError,eError,eError,eError),//38-3f
 PCK4BITS(eError,eError,eError,eError,eItsMe,eError,eStart,eStart) //40-47 
 };
 
-static const PRUint32 ISO2022JPCharLenTable[] = {0, 0, 0, 0, 0, 0, 0, 0};
+static const PRUint32 ISO2022JPCharLenTable[] = {0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
 
 SMModel ISO2022JPSMModel = {
   {eIdxSft4bits, eSftMsk4bits, eBitSft4bits, eUnitMsk4bits, ISO2022JP_cls },

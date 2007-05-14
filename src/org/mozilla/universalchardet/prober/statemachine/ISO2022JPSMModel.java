@@ -20,6 +20,7 @@
  *
  * Contributor(s):
  *   Kohei TAKETA <k-tak@void.in> (Java port)
+ *   Kazutoshi Satoda
  *
  * Alternatively, the contents of this file may be used under the terms of
  * either the GNU General Public License Version 2 or later (the "GPL"), or
@@ -117,6 +118,6 @@ public class ISO2022JPSMModel extends SMModel
     };
     
     private static int[] iso2022jpCharLenTable = new int[] {
-        0, 0, 0, 0, 0, 0, 0, 0
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0
     };
 }

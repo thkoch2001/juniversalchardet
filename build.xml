@@ -6,7 +6,7 @@
 
 	<property name="src" location="src"/>
 	<property name="dist" location="dist"/>
-	<property name="version" value="1.0"/>
+	<property name="version" value="1.0.1"/>
 
 	<target name="init">
 		<mkdir dir="${dist}"/>
