@@ -19,5 +19,5 @@ setup(name=LIB_NAME,
       ext_modules=[Extension('_cchardet',
                              ['cchardet_wrap.c'],
                              libraries=['uchardet'])],
-      py_modules=['cchardet', '_cchardet']
+      py_modules=['cchardet']
       )
