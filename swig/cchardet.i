@@ -36,7 +36,7 @@ typedef void* chardet_t;
 %typemap(argout) chardet_t *pdet {
   PyObject *o;
   o = SWIG_NewPointerObj(*$1, $descriptor(chardet_t), 0);
-  $result = SWIG_Python_AppendOutput($result, o);
+  $result = SWIG_AppendOutput($result, o);
 }
 
 int chardet_create(chardet_t* pdet);
