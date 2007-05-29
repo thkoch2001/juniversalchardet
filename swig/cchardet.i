@@ -34,7 +34,7 @@ typedef void* chardet_t;
   $1 = &ret;
 }
 %typemap(argout) chardet_t *pdet {
-  SWIG_Object *o;
+  SWIG_Object o;
   o = SWIG_NewPointerObj(*$1, $descriptor(chardet_t), 0);
   $result = SWIG_AppendOutput($result, o);
 }
