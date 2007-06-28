@@ -17,26 +17,26 @@ http://www.mozilla.org/projects/intl/UniversalCharsetDetection.html
 
 - Chinese
   - ISO-2022-CN
-  - Big5
-  - X-EUC-TW
+  - BIG-5
+  - EUC-TW
   - GB18030
   - HZ-GB-2312
 
 - Cyrillic
   - ISO-8859-5
   - KOI8-R
-  - windows-1251
-  - x-mac-cyrillic
+  - WINDOWS-1251
+  - MACCYRILLIC
   - IBM866
   - IBM855
 
 - Greek
   - ISO-8859-7
-  - windows-1253
+  - WINDOWS-1253
 
 - Hebrew
   - ISO-8859-8
-  - windows-1255
+  - WINDOWS-1255
 
 - Japanese
   - ISO-2022-JP
@@ -53,7 +53,9 @@ http://www.mozilla.org/projects/intl/UniversalCharsetDetection.html
   - UTF-32BE / UTF-32LE / X-ISO-10646-UCS-4-3412 / X-ISO-10646-UCS-4-2143
 
 - Others
-  - ISO-8859-1
+  - WINDOWS-1252
+
+All supported encodings are listed in org.mozilla.universalchardet.Constants.
 
 
 3. How to use it
