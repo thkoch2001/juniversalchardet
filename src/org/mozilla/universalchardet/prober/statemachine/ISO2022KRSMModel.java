@@ -41,6 +41,7 @@ import static org.mozilla.universalchardet.prober.statemachine.PkgInt.INDEX_SHIF
 import static org.mozilla.universalchardet.prober.statemachine.PkgInt.SHIFT_MASK_4BITS;
 import static org.mozilla.universalchardet.prober.statemachine.PkgInt.BIT_SHIFT_4BITS;
 import static org.mozilla.universalchardet.prober.statemachine.PkgInt.UNIT_MASK_4BITS;
+import org.mozilla.universalchardet.Constants;
 
 
 public class ISO2022KRSMModel extends SMModel
@@ -61,7 +62,7 @@ public class ISO2022KRSMModel extends SMModel
                 ISO2022KR_CLASS_FACTOR,
                 new PkgInt(INDEX_SHIFT_4BITS, SHIFT_MASK_4BITS, BIT_SHIFT_4BITS, UNIT_MASK_4BITS, iso2022krStateTable),
                 iso2022krCharLenTable,
-                "ISO-2022-KR"
+                Constants.CHARSET_ISO_2022_KR
                 );
     }
     

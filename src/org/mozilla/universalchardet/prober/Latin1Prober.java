@@ -39,6 +39,8 @@
 package org.mozilla.universalchardet.prober;
 
 import java.nio.ByteBuffer;
+import org.mozilla.universalchardet.Constants;
+
 
 public class Latin1Prober extends CharsetProber
 {
@@ -80,7 +82,7 @@ public class Latin1Prober extends CharsetProber
     @Override
     public String getCharSetName()
     {
-        return "windows-1252";
+        return Constants.CHARSET_WINDOWS_1252;
     }
 
     @Override

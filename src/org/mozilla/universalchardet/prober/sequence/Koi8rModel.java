@@ -37,6 +37,9 @@
 
 package org.mozilla.universalchardet.prober.sequence;
 
+import org.mozilla.universalchardet.Constants;
+
+
 public class Koi8rModel extends CyrillicModel
 {
     ////////////////////////////////////////////////////////////////
@@ -44,7 +47,7 @@ public class Koi8rModel extends CyrillicModel
     ////////////////////////////////////////////////////////////////
     public Koi8rModel()
     {
-        super(koi8rCharToOrderMap, "KOI8-R");
+        super(koi8rCharToOrderMap, Constants.CHARSET_KOI8_R);
     }
     
     

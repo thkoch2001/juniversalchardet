@@ -37,6 +37,9 @@
 
 package org.mozilla.universalchardet.prober.sequence;
 
+import org.mozilla.universalchardet.Constants;
+
+
 public class Win1251Model extends CyrillicModel
 {
     ////////////////////////////////////////////////////////////////
@@ -44,7 +47,7 @@ public class Win1251Model extends CyrillicModel
     ////////////////////////////////////////////////////////////////
     public Win1251Model()
     {
-        super(win1251CharToOrderMap, "windows-1251");
+        super(win1251CharToOrderMap, Constants.CHARSET_WINDOWS_1251);
     }
     
 

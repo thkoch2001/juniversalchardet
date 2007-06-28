@@ -41,6 +41,8 @@ import org.mozilla.universalchardet.prober.distributionanalysis.GB2312Distributi
 import org.mozilla.universalchardet.prober.statemachine.CodingStateMachine;
 import org.mozilla.universalchardet.prober.statemachine.GB18030SMModel;
 import org.mozilla.universalchardet.prober.statemachine.SMModel;
+import org.mozilla.universalchardet.Constants;
+
 
 public class GB18030Prober extends CharsetProber
 {
@@ -72,7 +74,7 @@ public class GB18030Prober extends CharsetProber
     @Override
     public String getCharSetName()
     {
-        return "gb18030";
+        return Constants.CHARSET_GB18030;
     }
 
     @Override

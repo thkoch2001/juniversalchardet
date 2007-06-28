@@ -37,6 +37,9 @@
 
 package org.mozilla.universalchardet.prober.sequence;
 
+import org.mozilla.universalchardet.Constants;
+
+
 public class MacCyrillicModel extends CyrillicModel
 {
     ////////////////////////////////////////////////////////////////
@@ -44,7 +47,7 @@ public class MacCyrillicModel extends CyrillicModel
     ////////////////////////////////////////////////////////////////
     public MacCyrillicModel()
     {
-        super(macCyrillicCharToOrderMap, "x-mac-cyrillic");
+        super(macCyrillicCharToOrderMap, Constants.CHARSET_MACCYRILLIC);
     }
     
     

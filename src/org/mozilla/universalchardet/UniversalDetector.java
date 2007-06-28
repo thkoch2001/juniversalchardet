@@ -43,6 +43,7 @@ import org.mozilla.universalchardet.prober.MBCSGroupProber;
 import org.mozilla.universalchardet.prober.SBCSGroupProber;
 import org.mozilla.universalchardet.prober.EscCharsetProber;
 import org.mozilla.universalchardet.prober.Latin1Prober;
+import org.mozilla.universalchardet.Constants;
 
 public class UniversalDetector
 {
@@ -144,28 +145,28 @@ public class UniversalDetector
                 switch (b1) {
                 case 0xEF:
                     if (b2 == 0xBB && b3 == 0xBF) {
-                        this.detectedCharset = "UTF-8";
+                        this.detectedCharset = Constants.CHARSET_UTF_8;
                     }
                     break;
                 case 0xFE:
                     if (b2 == 0xFF && b3 == 0x00 && b4 == 0x00) {
-                        this.detectedCharset = "X-ISO-10646-UCS-4-3412";
+                        this.detectedCharset = Constants.CHARSET_X_ISO_10646_UCS_4_3412;
                     } else if (b2 == 0xFF) {
-                        this.detectedCharset = "UTF-16BE";
+                        this.detectedCharset = Constants.CHARSET_UTF_16BE;
                     }
                     break;
                 case 0x00:
                     if (b2 == 0x00 && b3 == 0xFE && b4 == 0xFF) {
-                        this.detectedCharset = "UTF-32BE";
+                        this.detectedCharset = Constants.CHARSET_UTF_32BE;
                     } else if (b2 == 0x00 && b3 == 0xFF && b4 == 0xFE) {
-                        this.detectedCharset = "X-ISO-10646-UCS-4-2143";
+                        this.detectedCharset = Constants.CHARSET_X_ISO_10646_UCS_4_2143;
                     }
                     break;
                 case 0xFF:
                     if (b2 == 0xFE && b3 == 0x00 && b4 == 0x00) {
-                        this.detectedCharset = "UTF-32LE";
+                        this.detectedCharset = Constants.CHARSET_UTF_32LE;
                     } else if (b2 == 0xFE) {
-                        this.detectedCharset = "UTF-16LE";
+                        this.detectedCharset = Constants.CHARSET_UTF_16LE;
                     }
                     break;
                 } // swich end

@@ -41,6 +41,8 @@ import org.mozilla.universalchardet.prober.distributionanalysis.Big5Distribution
 import org.mozilla.universalchardet.prober.statemachine.Big5SMModel;
 import org.mozilla.universalchardet.prober.statemachine.CodingStateMachine;
 import org.mozilla.universalchardet.prober.statemachine.SMModel;
+import org.mozilla.universalchardet.Constants;
+
 
 public class Big5Prober extends CharsetProber
 {
@@ -72,7 +74,7 @@ public class Big5Prober extends CharsetProber
     @Override
     public String getCharSetName()
     {
-        return "Big5";
+        return Constants.CHARSET_BIG5;
     }
 
     @Override

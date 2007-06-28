@@ -40,6 +40,7 @@ package org.mozilla.universalchardet.prober;
 import org.mozilla.universalchardet.prober.statemachine.CodingStateMachine;
 import org.mozilla.universalchardet.prober.statemachine.SMModel;
 import org.mozilla.universalchardet.prober.statemachine.UTF8SMModel;
+import org.mozilla.universalchardet.Constants;
 
 
 public class UTF8Prober extends CharsetProber
@@ -74,7 +75,7 @@ public class UTF8Prober extends CharsetProber
 
     public String getCharSetName()
     {
-        return "UTF-8";
+        return Constants.CHARSET_UTF_8;
     }
 
     public ProbingState handleData(final byte[] buf, int offset, int length)

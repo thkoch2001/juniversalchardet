@@ -37,6 +37,9 @@
 
 package org.mozilla.universalchardet.prober.sequence;
 
+import org.mozilla.universalchardet.Constants;
+
+
 public class Latin5BulgarianModel extends BulgarianModel
 {
     ////////////////////////////////////////////////////////////////
@@ -44,7 +47,7 @@ public class Latin5BulgarianModel extends BulgarianModel
     ////////////////////////////////////////////////////////////////
     public Latin5BulgarianModel()
     {
-        super(latin5BulgarianCharToOrderMap, "ISO-8859-5");
+        super(latin5BulgarianCharToOrderMap, Constants.CHARSET_ISO_8859_5);
     }
     
     

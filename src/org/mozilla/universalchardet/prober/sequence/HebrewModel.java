@@ -39,6 +39,9 @@
 
 package org.mozilla.universalchardet.prober.sequence;
 
+import org.mozilla.universalchardet.Constants;
+
+
 public class HebrewModel extends SequenceModel
 {
     ////////////////////////////////////////////////////////////////
@@ -57,7 +60,7 @@ public class HebrewModel extends SequenceModel
                 hebrewLangModel,
                 TYPICAL_POSITIVE_RATIO,
                 false,
-                "windows-1255");
+                Constants.CHARSET_WINDOWS_1255);
     }
     
     

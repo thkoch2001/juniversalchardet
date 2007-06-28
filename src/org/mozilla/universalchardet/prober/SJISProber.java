@@ -42,6 +42,8 @@ import org.mozilla.universalchardet.prober.statemachine.SJISSMModel;
 import org.mozilla.universalchardet.prober.statemachine.SMModel;
 import org.mozilla.universalchardet.prober.contextanalysis.SJISContextAnalysis;
 import org.mozilla.universalchardet.prober.distributionanalysis.SJISDistributionAnalysis;
+import org.mozilla.universalchardet.Constants;
+
 
 public class SJISProber extends CharsetProber
 {
@@ -75,7 +77,7 @@ public class SJISProber extends CharsetProber
     @Override
     public String getCharSetName()
     {
-        return "Shift_JIS";
+        return Constants.CHARSET_SHIFT_JIS;
     }
 
     @Override

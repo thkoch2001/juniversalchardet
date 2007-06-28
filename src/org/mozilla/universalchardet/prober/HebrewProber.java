@@ -37,6 +37,9 @@
 
 package org.mozilla.universalchardet.prober;
 
+import org.mozilla.universalchardet.Constants;
+
+
 public class HebrewProber extends CharsetProber
 {
     ////////////////////////////////////////////////////////////////
@@ -57,9 +60,6 @@ public class HebrewProber extends CharsetProber
     
     public static final int MIN_FINAL_CHAR_DISTANCE = 5;
     public static final float MIN_MODEL_DISTANCE = 0.01f;
-    
-    public static final String VISUAL_HEBREW_NAME = "ISO-8859-8";
-    public static final String LOGICAL_HEBREW_NAME = "windows-1255";
     
 
     ////////////////////////////////////////////////////////////////
@@ -97,28 +97,28 @@ public class HebrewProber extends CharsetProber
         // If the final letter score distance is dominant enough, rely on it.
         int finalsub = this.finalCharLogicalScore - this.finalCharVisualScore;
         if (finalsub >= MIN_FINAL_CHAR_DISTANCE) {
-            return LOGICAL_HEBREW_NAME;
+            return Constants.CHARSET_WINDOWS_1255;
         }
         if (finalsub <= -MIN_FINAL_CHAR_DISTANCE) {
-            return VISUAL_HEBREW_NAME;
+            return Constants.CHARSET_ISO_8859_8;
         }
         
         // It's not dominant enough, try to rely on the model scores instead.
         float modelsub = this.logicalProber.getConfidence() - this.visualProber.getConfidence();
         if (modelsub > MIN_MODEL_DISTANCE) {
-            return LOGICAL_HEBREW_NAME;
+            return Constants.CHARSET_WINDOWS_1255;
         }
         if (modelsub < -MIN_MODEL_DISTANCE) {
-            return VISUAL_HEBREW_NAME;
+            return Constants.CHARSET_ISO_8859_8;
         }
         
         // Still no good, back to final letter distance, maybe it'll save the day.
         if (finalsub < 0) {
-            return VISUAL_HEBREW_NAME;
+            return Constants.CHARSET_ISO_8859_8;
         }
         
         // (finalsub > 0 - Logical) or (don't know what to do) default to Logical.
-        return LOGICAL_HEBREW_NAME;
+        return Constants.CHARSET_WINDOWS_1255;
     }
 
     @Override
