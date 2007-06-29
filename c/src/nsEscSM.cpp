@@ -35,6 +35,7 @@
  * the terms of any one of the MPL, the GPL or the LGPL.
  *
  * ***** END LICENSE BLOCK ***** */
+#include "universalchardet.h"
 #include "nsCodingStateMachine.h"
 
 static PRUint32 HZ_cls[ 256 / 8 ] = {
@@ -89,7 +90,7 @@ SMModel HZSMModel = {
    6,
   {eIdxSft4bits, eSftMsk4bits, eBitSft4bits, eUnitMsk4bits, HZ_st },
   HZCharLenTable,
-  "HZ-GB-2312",
+  CHARDET_ENCODING_HZ_GB_2312,
 };
 
 
@@ -147,7 +148,7 @@ SMModel ISO2022CNSMModel = {
   9,
   {eIdxSft4bits, eSftMsk4bits, eBitSft4bits, eUnitMsk4bits, ISO2022CN_st },
   ISO2022CNCharLenTable,
-  "ISO-2022-CN",
+  CHARDET_ENCODING_ISO_2022_CN,
 };
 
 static PRUint32 ISO2022JP_cls [ 256 / 8 ] = {
@@ -205,7 +206,7 @@ SMModel ISO2022JPSMModel = {
   10,
   {eIdxSft4bits, eSftMsk4bits, eBitSft4bits, eUnitMsk4bits, ISO2022JP_st },
   ISO2022JPCharLenTable,
-  "ISO-2022-JP",
+  CHARDET_ENCODING_ISO_2022_JP,
 };
 
 static PRUint32 ISO2022KR_cls [ 256 / 8 ] = {
@@ -259,6 +260,6 @@ SMModel ISO2022KRSMModel = {
    6,
   {eIdxSft4bits, eSftMsk4bits, eBitSft4bits, eUnitMsk4bits, ISO2022KR_st },
   ISO2022KRCharLenTable,
-  "ISO-2022-KR",
+  CHARDET_ENCODING_ISO_2022_KR,
 };
 

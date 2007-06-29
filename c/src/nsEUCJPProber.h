@@ -43,6 +43,7 @@
 #ifndef nsEUCJPProber_h__
 #define nsEUCJPProber_h__
 
+#include "universalchardet.h"
 #include "nsCharSetProber.h"
 #include "nsCodingStateMachine.h"
 #include "JpCntx.h"
@@ -54,7 +55,7 @@ public:
                       Reset();}
   virtual ~nsEUCJPProber(void){delete mCodingSM;}
   nsProbingState HandleData(const char* aBuf, PRUint32 aLen);
-  const char* GetCharSetName() {return "EUC-JP";}
+  const char* GetCharSetName() {return CHARDET_ENCODING_EUC_JP;}
   nsProbingState GetState(void) {return mState;}
   void      Reset(void);
   float     GetConfidence(void);

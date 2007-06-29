@@ -34,6 +34,7 @@
  * the terms of any one of the MPL, the GPL or the LGPL.
  *
  * ***** END LICENSE BLOCK ***** */
+#include "universalchardet.h"
 #include "nsCodingStateMachine.h"
 
 /*
@@ -94,7 +95,7 @@ SMModel Big5SMModel = {
     5,
   {eIdxSft4bits, eSftMsk4bits, eBitSft4bits, eUnitMsk4bits, BIG5_st },
   Big5CharLenTable,
-  "Big5",
+  CHARDET_ENCODING_BIG5,
 };
 
 static PRUint32 EUCJP_cls [ 256 / 8 ] = {
@@ -149,7 +150,7 @@ SMModel EUCJPSMModel = {
    6,
   {eIdxSft4bits, eSftMsk4bits, eBitSft4bits, eUnitMsk4bits, EUCJP_st },
   EUCJPCharLenTable,
-  "EUC-JP",
+  CHARDET_ENCODING_EUC_JP,
 };
 
 static PRUint32 EUCKR_cls [ 256 / 8 ] = {
@@ -201,7 +202,7 @@ SMModel EUCKRSMModel = {
   4,
   {eIdxSft4bits, eSftMsk4bits, eBitSft4bits, eUnitMsk4bits, EUCKR_st },
   EUCKRCharLenTable,
-  "EUC-KR",
+  CHARDET_ENCODING_EUC_KR,
 };
 
 static PRUint32 EUCTW_cls [ 256 / 8 ] = {
@@ -257,7 +258,7 @@ SMModel EUCTWSMModel = {
    7,
   {eIdxSft4bits, eSftMsk4bits, eBitSft4bits, eUnitMsk4bits, EUCTW_st },
   EUCTWCharLenTable,
-  "x-euc-tw",
+  CHARDET_ENCODING_EUC_TW,
 };
 
 /* obsolete GB2312 by gb18030
@@ -373,7 +374,7 @@ SMModel GB18030SMModel = {
    7,
   {eIdxSft4bits, eSftMsk4bits, eBitSft4bits, eUnitMsk4bits, GB18030_st },
   GB18030CharLenTable,
-  "GB18030",
+  CHARDET_ENCODING_GB18030,
 };
 
 // sjis
@@ -430,7 +431,7 @@ SMModel SJISSMModel = {
    6,
   {eIdxSft4bits, eSftMsk4bits, eBitSft4bits, eUnitMsk4bits, SJIS_st },
   SJISCharLenTable,
-  "Shift_JIS",
+  CHARDET_ENCODING_SHIFT_JIS,
 };
 
 
@@ -487,7 +488,7 @@ SMModel UCS2BESMModel = {
    6,
   {eIdxSft4bits, eSftMsk4bits, eBitSft4bits, eUnitMsk4bits, UCS2BE_st },
   UCS2BECharLenTable,
-  "UTF-16BE",
+  CHARDET_ENCODING_UTF_16BE,
 };
 
 static PRUint32 UCS2LE_cls [ 256 / 8 ] = {
@@ -543,7 +544,7 @@ SMModel UCS2LESMModel = {
    6,
   {eIdxSft4bits, eSftMsk4bits, eBitSft4bits, eUnitMsk4bits, UCS2LE_st },
   UCS2LECharLenTable,
-  "UTF-16LE",
+  CHARDET_ENCODING_UTF_16LE,
 };
 
 
@@ -621,6 +622,6 @@ SMModel UTF8SMModel = {
    16,
   {eIdxSft4bits, eSftMsk4bits, eBitSft4bits, eUnitMsk4bits, UTF8_st },
   UTF8CharLenTable,
-  "UTF-8",
+  CHARDET_ENCODING_UTF_8,
 };
 

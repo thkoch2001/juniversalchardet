@@ -38,6 +38,7 @@
 #ifndef nsEUCKRProber_h__
 #define nsEUCKRProber_h__
 
+#include "universalchardet.h"
 #include "nsCharSetProber.h"
 #include "nsCodingStateMachine.h"
 #include "CharDistribution.h"
@@ -48,7 +49,7 @@ public:
                       Reset();}
   virtual ~nsEUCKRProber(void){delete mCodingSM;}
   nsProbingState HandleData(const char* aBuf, PRUint32 aLen);
-  const char* GetCharSetName() {return "EUC-KR";}
+  const char* GetCharSetName() {return CHARDET_ENCODING_EUC_KR;}
   nsProbingState GetState(void) {return mState;}
   void      Reset(void);
   float     GetConfidence(void);

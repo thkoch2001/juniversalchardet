@@ -35,6 +35,7 @@
  *
  * ***** END LICENSE BLOCK ***** */
 
+#include "universalchardet.h"
 #include "nsSBCharSetProber.h"
 
 
@@ -306,7 +307,7 @@ SequenceModel Koi8rModel =
   RussianLangModel,
   (float)0.976601,
   PR_FALSE,
-  "KOI8-R"
+  CHARDET_ENCODING_KOI8_R
 };
 
 SequenceModel Win1251Model = 
@@ -315,7 +316,7 @@ SequenceModel Win1251Model =
   RussianLangModel,
   (float)0.976601,
   PR_FALSE,
-  "windows-1251"
+  CHARDET_ENCODING_WINDOWS_1251
 };
 
 SequenceModel Latin5Model = 
@@ -324,7 +325,7 @@ SequenceModel Latin5Model =
   RussianLangModel,
   (float)0.976601,
   PR_FALSE,
-  "ISO-8859-5"
+  CHARDET_ENCODING_ISO_8859_5
 };
 
 SequenceModel MacCyrillicModel = 
@@ -333,7 +334,7 @@ SequenceModel MacCyrillicModel =
   RussianLangModel,
   (float)0.976601,
   PR_FALSE,
-  "x-mac-cyrillic"
+  CHARDET_ENCODING_MACCYRILLIC
 };
 
 SequenceModel Ibm866Model = 
@@ -342,7 +343,7 @@ SequenceModel Ibm866Model =
   RussianLangModel,
   (float)0.976601,
   PR_FALSE,
-  "IBM866"
+  CHARDET_ENCODING_IBM866
 };
 
 SequenceModel Ibm855Model = 
@@ -351,5 +352,5 @@ SequenceModel Ibm855Model =
   RussianLangModel,
   (float)0.976601,
   PR_FALSE,
-  "IBM855"
+  CHARDET_ENCODING_IBM855
 };

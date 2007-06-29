@@ -35,6 +35,7 @@
  *
  * ***** END LICENSE BLOCK ***** */
 
+#include "universalchardet.h"
 #include "nsSBCharSetProber.h"
 /****************************************************************
 255: Control characters that usually does not exist in any text
@@ -231,7 +232,7 @@ SequenceModel Latin7Model =
   GreekLangModel,
   (float)0.982851,
   PR_FALSE,
-  "ISO-8859-7"
+  CHARDET_ENCODING_ISO_8859_7
 };
 
 SequenceModel Win1253Model = 
@@ -240,5 +241,5 @@ SequenceModel Win1253Model =
   GreekLangModel,
   (float)0.982851,
   PR_FALSE,
-  "windows-1253"
+  CHARDET_ENCODING_WINDOWS_1253
 };

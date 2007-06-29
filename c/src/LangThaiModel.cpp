@@ -35,6 +35,7 @@
  *
  * ***** END LICENSE BLOCK ***** */
 
+#include "universalchardet.h"
 #include "nsSBCharSetProber.h"
 
 
@@ -217,5 +218,5 @@ SequenceModel TIS620ThaiModel =
   ThaiLangModel,
   (float)0.926386,
   PR_FALSE,
-  "TIS-620"
+  CHARDET_ENCODING_TIS_620
 };

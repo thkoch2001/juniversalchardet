@@ -38,6 +38,7 @@
 #ifndef nsBig5Prober_h__
 #define nsBig5Prober_h__
 
+#include "universalchardet.h"
 #include "nsCharSetProber.h"
 #include "nsCodingStateMachine.h"
 #include "CharDistribution.h"
@@ -48,7 +49,7 @@ public:
                       Reset();}
   virtual ~nsBig5Prober(void){delete mCodingSM;}
   nsProbingState HandleData(const char* aBuf, PRUint32 aLen);
-  const char* GetCharSetName() {return "Big5";}
+  const char* GetCharSetName() {return CHARDET_ENCODING_BIG5;}
   nsProbingState GetState(void) {return mState;}
   void      Reset(void);
   float     GetConfidence(void);

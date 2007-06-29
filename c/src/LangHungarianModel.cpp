@@ -35,6 +35,7 @@
  *
  * ***** END LICENSE BLOCK ***** */
 
+#include "universalchardet.h"
 #include "nsSBCharSetProber.h"
 /****************************************************************
 255: Control characters that usually does not exist in any text
@@ -229,7 +230,7 @@ SequenceModel Latin2HungarianModel =
   HungarianLangModel,
   (float)0.947368,
   PR_TRUE,
-  "ISO-8859-2"
+  CHARDET_ENCODING_ISO_8859_2
 };
 
 SequenceModel Win1250HungarianModel = 
@@ -238,5 +239,5 @@ SequenceModel Win1250HungarianModel =
   HungarianLangModel,
   (float)0.947368,
   PR_TRUE,
-  "windows-1250"
+  CHARDET_ENCODING_WINDOWS_1250
 };

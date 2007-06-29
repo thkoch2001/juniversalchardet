@@ -37,6 +37,7 @@
  *
  * ***** END LICENSE BLOCK ***** */
 
+#include "universalchardet.h"
 #include "nsSBCharSetProber.h"
 
 
@@ -214,6 +215,6 @@ SequenceModel Win1255Model =
   HebrewLangModel,
   (float)0.984004,
   PR_FALSE,
-  "windows-1255"
+  CHARDET_ENCODING_WINDOWS_1255
 };
 

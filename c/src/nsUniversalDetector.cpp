@@ -38,6 +38,7 @@
 
 #include "nscore.h"
 
+#include "universalchardet.h"
 #include "nsUniversalDetector.h"
 
 #include "nsMBCSGroupProber.h"
@@ -116,31 +117,31 @@ nsresult nsUniversalDetector::HandleData(const char* aBuf, PRUint32 aLen)
         case '\xEF':
           if (('\xBB' == aBuf[1]) && ('\xBF' == aBuf[2]))
             // EF BB BF  UTF-8 encoded BOM
-            mDetectedCharset = "UTF-8";
+            mDetectedCharset = CHARDET_ENCODING_UTF_8;
         break;
         case '\xFE':
           if (('\xFF' == aBuf[1]) && ('\x00' == aBuf[2]) && ('\x00' == aBuf[3]))
             // FE FF 00 00  UCS-4, unusual octet order BOM (3412)
-            mDetectedCharset = "X-ISO-10646-UCS-4-3412";
+            mDetectedCharset = CHARDET_ENCODING_X_ISO_10646_UCS_4_3412;
           else if ('\xFF' == aBuf[1])
             // FE FF  UTF-16, big endian BOM
-            mDetectedCharset = "UTF-16BE";
+            mDetectedCharset = CHARDET_ENCODING_UTF_16BE;
         break;
         case '\x00':
           if (('\x00' == aBuf[1]) && ('\xFE' == aBuf[2]) && ('\xFF' == aBuf[3]))
             // 00 00 FE FF  UTF-32, big-endian BOM
-            mDetectedCharset = "UTF-32BE";
+            mDetectedCharset = CHARDET_ENCODING_UTF_32BE;
           else if (('\x00' == aBuf[1]) && ('\xFF' == aBuf[2]) && ('\xFE' == aBuf[3]))
             // 00 00 FF FE  UCS-4, unusual octet order BOM (2143)
-            mDetectedCharset = "X-ISO-10646-UCS-4-2143";
+            mDetectedCharset = CHARDET_ENCODING_X_ISO_10646_UCS_4_2143;
         break;
         case '\xFF':
           if (('\xFE' == aBuf[1]) && ('\x00' == aBuf[2]) && ('\x00' == aBuf[3]))
             // FF FE 00 00  UTF-32, little-endian BOM
-            mDetectedCharset = "UTF-32LE";
+            mDetectedCharset = CHARDET_ENCODING_UTF_32LE;
           else if ('\xFE' == aBuf[1])
             // FF FE  UTF-16, little endian BOM
-            mDetectedCharset = "UTF-16LE";
+            mDetectedCharset = CHARDET_ENCODING_UTF_16LE;
         break;
       }  // switch
 
