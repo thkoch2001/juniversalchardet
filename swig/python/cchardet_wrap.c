@@ -2505,6 +2505,30 @@ SWIG_pchar_descriptor(void)
 }
 
 
+SWIGINTERNINLINE PyObject *
+SWIG_FromCharPtrAndSize(const char* carray, size_t size)
+{
+  if (carray) {
+    if (size > INT_MAX) {
+      swig_type_info* pchar_descriptor = SWIG_pchar_descriptor();
+      return pchar_descriptor ? 
+	SWIG_NewPointerObj((char *)(carray), pchar_descriptor, 0) : SWIG_Py_Void();
+    } else {
+      return PyString_FromStringAndSize(carray, (int)(size));
+    }
+  } else {
+    return SWIG_Py_Void();
+  }
+}
+
+
+SWIGINTERNINLINE PyObject * 
+SWIG_FromCharPtr(const char *cptr)
+{ 
+  return SWIG_FromCharPtrAndSize(cptr, (cptr ? strlen(cptr) : 0));
+}
+
+
 SWIGINTERN int
 SWIG_AsCharPtrAndSize(PyObject *obj, char** cptr, size_t* psize, int *alloc)
 {
@@ -2716,30 +2740,6 @@ static void my_get_charset(chardet_t det, char* namebuf)
 {
    int ret = 0;
    ret = chardet_get_charset(det, namebuf, CHARDET_MAX_ENCODING_NAME);
-}
-
-
-SWIGINTERNINLINE PyObject *
-SWIG_FromCharPtrAndSize(const char* carray, size_t size)
-{
-  if (carray) {
-    if (size > INT_MAX) {
-      swig_type_info* pchar_descriptor = SWIG_pchar_descriptor();
-      return pchar_descriptor ? 
-	SWIG_NewPointerObj((char *)(carray), pchar_descriptor, 0) : SWIG_Py_Void();
-    } else {
-      return PyString_FromStringAndSize(carray, (int)(size));
-    }
-  } else {
-    return SWIG_Py_Void();
-  }
-}
-
-
-SWIGINTERNINLINE PyObject * 
-SWIG_FromCharPtr(const char *cptr)
-{ 
-  return SWIG_FromCharPtrAndSize(cptr, (cptr ? strlen(cptr) : 0));
 }
 
 #ifdef __cplusplus
@@ -3439,5 +3439,36 @@ SWIGEXPORT void SWIG_init(void) {
   SWIG_Python_SetConstant(d, "CHARDET_RESULT_OK",SWIG_From_int((int)(0)));
   SWIG_Python_SetConstant(d, "CHARDET_RESULT_NOMEMORY",SWIG_From_int((int)((-1))));
   SWIG_Python_SetConstant(d, "CHARDET_RESULT_INVALID_DETECTOR",SWIG_From_int((int)((-2))));
+  SWIG_Python_SetConstant(d, "CHARDET_ENCODING_ISO_2022_JP",SWIG_FromCharPtr("ISO-2022-JP"));
+  SWIG_Python_SetConstant(d, "CHARDET_ENCODING_ISO_2022_CN",SWIG_FromCharPtr("ISO-2022-CN"));
+  SWIG_Python_SetConstant(d, "CHARDET_ENCODING_ISO_2022_KR",SWIG_FromCharPtr("ISO-2022-KR"));
+  SWIG_Python_SetConstant(d, "CHARDET_ENCODING_ISO_8859_5",SWIG_FromCharPtr("ISO-8859-5"));
+  SWIG_Python_SetConstant(d, "CHARDET_ENCODING_ISO_8859_7",SWIG_FromCharPtr("ISO-8859-7"));
+  SWIG_Python_SetConstant(d, "CHARDET_ENCODING_ISO_8859_8",SWIG_FromCharPtr("ISO-8859-8"));
+  SWIG_Python_SetConstant(d, "CHARDET_ENCODING_BIG5",SWIG_FromCharPtr("BIG5"));
+  SWIG_Python_SetConstant(d, "CHARDET_ENCODING_GB18030",SWIG_FromCharPtr("GB18030"));
+  SWIG_Python_SetConstant(d, "CHARDET_ENCODING_EUC_JP",SWIG_FromCharPtr("EUC-JP"));
+  SWIG_Python_SetConstant(d, "CHARDET_ENCODING_EUC_KR",SWIG_FromCharPtr("EUC-KR"));
+  SWIG_Python_SetConstant(d, "CHARDET_ENCODING_EUC_TW",SWIG_FromCharPtr("EUC-TW"));
+  SWIG_Python_SetConstant(d, "CHARDET_ENCODING_SHIFT_JIS",SWIG_FromCharPtr("SHIFT_JIS"));
+  SWIG_Python_SetConstant(d, "CHARDET_ENCODING_IBM855",SWIG_FromCharPtr("IBM855"));
+  SWIG_Python_SetConstant(d, "CHARDET_ENCODING_IBM866",SWIG_FromCharPtr("IBM866"));
+  SWIG_Python_SetConstant(d, "CHARDET_ENCODING_KOI8_R",SWIG_FromCharPtr("KOI8-R"));
+  SWIG_Python_SetConstant(d, "CHARDET_ENCODING_MACCYRILLIC",SWIG_FromCharPtr("MACCYRILLIC"));
+  SWIG_Python_SetConstant(d, "CHARDET_ENCODING_WINDOWS_1251",SWIG_FromCharPtr("WINDOWS-1251"));
+  SWIG_Python_SetConstant(d, "CHARDET_ENCODING_WINDOWS_1252",SWIG_FromCharPtr("WINDOWS-1252"));
+  SWIG_Python_SetConstant(d, "CHARDET_ENCODING_WINDOWS_1253",SWIG_FromCharPtr("WINDOWS-1253"));
+  SWIG_Python_SetConstant(d, "CHARDET_ENCODING_WINDOWS_1255",SWIG_FromCharPtr("WINDOWS-1255"));
+  SWIG_Python_SetConstant(d, "CHARDET_ENCODING_UTF_8",SWIG_FromCharPtr("UTF-8"));
+  SWIG_Python_SetConstant(d, "CHARDET_ENCODING_UTF_16BE",SWIG_FromCharPtr("UTF-16BE"));
+  SWIG_Python_SetConstant(d, "CHARDET_ENCODING_UTF_16LE",SWIG_FromCharPtr("UTF-16LE"));
+  SWIG_Python_SetConstant(d, "CHARDET_ENCODING_UTF_32BE",SWIG_FromCharPtr("UTF-32BE"));
+  SWIG_Python_SetConstant(d, "CHARDET_ENCODING_UTF_32LE",SWIG_FromCharPtr("UTF-32LE"));
+  SWIG_Python_SetConstant(d, "CHARDET_ENCODING_HZ_GB_2312",SWIG_FromCharPtr("HZ-GB-2312"));
+  SWIG_Python_SetConstant(d, "CHARDET_ENCODING_X_ISO_10646_UCS_4_3412",SWIG_FromCharPtr("X-ISO-10646-UCS-4-3412"));
+  SWIG_Python_SetConstant(d, "CHARDET_ENCODING_X_ISO_10646_UCS_4_2143",SWIG_FromCharPtr("X-ISO-10646-UCS-4-2143"));
+  SWIG_Python_SetConstant(d, "CHARDET_ENCODING_ISO_8859_2",SWIG_FromCharPtr("ISO-8859-2"));
+  SWIG_Python_SetConstant(d, "CHARDET_ENCODING_WINDOWS_1250",SWIG_FromCharPtr("WINDOWS-1250"));
+  SWIG_Python_SetConstant(d, "CHARDET_ENCODING_TIS_620",SWIG_FromCharPtr("TIS-620"));
 }
 

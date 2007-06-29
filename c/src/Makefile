@@ -1,5 +1,5 @@
 CXX=g++
-CXXFLAGS=-c -O -D_REENTRANT
+CXXFLAGS=-c -O2 -D_REENTRANT -I../include
 LDFLAGS=
 
 SRCS=\

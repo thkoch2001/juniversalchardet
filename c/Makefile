@@ -1,6 +1,6 @@
 TARGET=libuchardet
 VERSIONINFO=0:0:0
-CXXFLAGS=-c -O -D_REENTRANT -I./src -I./include
+CXXFLAGS=-c -O2 -D_REENTRANT -I./src -I./include
 
 SUBDIRS=src
 DESTDIR=/usr/local
