@@ -1,6 +1,6 @@
 ﻿
-Microsoft Visual Studio Solution File, Format Version 9.00
-# Visual Studio 2005
+Microsoft Visual Studio Solution File, Format Version 10.00
+# Visual Studio 2008
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "universalchardet", "universalchardet\universalchardet.vcproj", "{3D96F3F3-7C46-4FEE-BD8D-BA19D8ED1DBB}"
 	ProjectSection(ProjectDependencies) = postProject
 		{7D9BA890-B579-433C-9D02-74D9BF8FDAA7} = {7D9BA890-B579-433C-9D02-74D9BF8FDAA7}
