@@ -37,41 +37,80 @@
  * ***** END LICENSE BLOCK ***** */
 package org.mozilla.universalchardet;
 
-import org.mozilla.universalchardet.UniversalDetector;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.util.Arrays;
+import java.util.List;
 
 public class TestDetector
 {
-    public static void main(String[] args) throws java.io.IOException
+
+	private final List<String> BINARY_EXTENSION = Arrays.asList("jar", "zip",
+			"7z", "class", "png", "gif", "jpg");
+    
+	public static String getExtension(String filename) {
+		return filename.replaceFirst("^.*?(\\.([^./\\\\]+)){0,1}$", "$2");
+	}
+
+	public static void main(String... args) throws IOException
     {
         if (args.length != 1) {
             System.err.println("Usage: java TestDetector FILENAME");
             System.exit(1);
         }
         
-        byte[] buf = new byte[4096];
-        String fileName = args[0];
-        java.io.FileInputStream fis = new java.io.FileInputStream(fileName);
+        final TestDetector testDetector = new TestDetector();
+        
+		for (final String filename : args) {
+			File file = new File(filename);
+			testDetector.detectFile(file);
+		}
+    }
 
-        // (1)
-        UniversalDetector detector = new UniversalDetector(null);
+	private final UniversalDetector detector;
+	
+	public TestDetector() {
+		// (1)
+		this.detector = new UniversalDetector(null);
+	}
 
-        // (2)
-        int nread;
-        while ((nread = fis.read(buf)) > 0 && !detector.isDone()) {
-            detector.handleData(buf, 0, nread);
-        }
+    public void detectFile(File file) throws IOException
+    {
+    	if(file.isDirectory()) {
+    		for(File f : file.listFiles()) {
+    			detectFile(f);
+    		}
+    		return;
+    	}
+    	
+        final byte[] buf = new byte[4096];
+        
+		try (final FileInputStream fis = new FileInputStream(file);)
+		{
+			// (2)
+			int nread;
+			while ((nread = fis.read(buf)) > 0 && !detector.isDone()) {
+				detector.handleData(buf, 0, nread);
+			}
+		}
         // (3)
         detector.dataEnd();
 
         // (4)
-        String encoding = detector.getDetectedCharset();
-        if (encoding != null) {
-            System.out.println("Detected encoding = " + encoding);
-        } else {
-            System.out.println("No encoding detected.");
-        }
+		String encoding = detector.getDetectedCharset();
+		final String extension = getExtension(file.getName()).toLowerCase();
+		if (encoding == null && BINARY_EXTENSION.contains(extension)) {
+			encoding = "binary ?";
+		}
+		showResult(file, extension, encoding);
 
         // (5)
         detector.reset();
     }
+    
+	public void showResult(final File file,final String extension, final String encoding) {
+		System.out.println(file + "\t" + extension + "\t"
+				+ (encoding == null ? "##unknown##" : encoding));
+	}
 }
