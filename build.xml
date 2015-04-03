@@ -43,9 +43,9 @@
 		A Java port of Mozilla's universalchardet.
 	</description>
 
-	<property name="src" location="src"/>
+	<property name="src" location="src/main/java"/>
 	<property name="example" location="example"/>
-	<property name="dist" location="dist"/>
+	<property name="dist" location="target"/>
 	<property name="version" value="1.0.3"/>
 
 	<path id="example.classpath">
@@ -81,6 +81,7 @@
 				target="1.5">
 			<include name="**/*.java"/>
 			<exclude name="**/.svn/"/>
+			<exclude name="**/.git/"/>
 			<exclude name="**/*Test.java"/>
 		</javac>
 	</target>
@@ -88,7 +89,7 @@
 	<target name="dist" depends="compile">
 		<jar	destfile="${dist}/juniversalchardet-${version}.jar"
 				basedir="${dist}/classes"
-				excludes="**/.svn/"
+				excludes="**/.svn/ **/.git/"
 		/>
 	</target>
 
